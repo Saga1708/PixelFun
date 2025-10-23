@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="geo.region" content="US">
+  <meta name="language" content="en-US">
+  <title>PixelFun - Free Arcade Games</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>PixelFun 🎮</h1>
+    <p>Click a category to filter games!</p>
+    <nav class="categories">
+      <button onclick="filterGames('all')">All</button>
+      <button onclick="filterGames('action')">Action</button>
+      <button onclick="filterGames('puzzle')">Puzzle</button>
+      <button onclick="filterGames('racing')">Racing</button>
+      <button onclick="filterGames('retro')">Retro</button>
+      <button onclick="filterGames('casual')">Casual</button>
+    </nav>
+  </header>
+
+  <!-- AdSense placeholder -->
+  <div class="ad-container">
+    <!-- Google AdSense script goes here -->
+  </div>
+
+  <main class="game-grid">
+    <!-- Action Game -->
+    <div class="game-card action">
+      <div class="thumbnail">
+        <img src="images/action-game.jpg" alt="Action Game" loading="lazy">
+        <a href="https://gamemonetize.com/g/20456" target="_blank" class="play-button">Play Now</a>
+      </div>
+      <h3>Action Game</h3>
+      <iframe data-src="https://gamemonetize.com/g/20456" allowfullscreen loading="lazy"></iframe>
+    </div>
+
+    <!-- Puzzle Game -->
+    <div class="game-card puzzle">
+      <div class="thumbnail">
+        <img src="images/puzzle-game.jpg" alt="Puzzle Game" loading="lazy">
+        <a href="https://gamemonetize.com/g/18987" target="_blank" class="play-button">Play Now</a>
+      </div>
+      <h3>Puzzle Game</h3>
+      <iframe data-src="https://gamemonetize.com/g/18987" allowfullscreen loading="lazy"></iframe>
+    </div>
+
+    <!-- Racing Game -->
+    <div class="game-card racing">
+      <div class="thumbnail">
+        <img src="images/racing-game.jpg" alt="Racing Game" loading="lazy">
+        <a href="https://gamemonetize.com/g/17678" target="_blank" class="play-button">Play Now</a>
+      </div>
+      <h3>Racing Game</h3>
+      <iframe data-src="https://gamemonetize.com/g/17678" allowfullscreen loading="lazy"></iframe>
+    </div>
+
+    <!-- Retro Game -->
+    <div class="game-card retro">
+      <div class="thumbnail">
+        <img src="images/retro-game.jpg" alt="Retro Game" loading="lazy">
+        <a href="https://www.gamepix.com/embed/beat-boxers" target="_blank" class="play-button">Play Now</a>
+      </div>
+      <h3>Retro Game</h3>
+      <iframe data-src="https://www.gamepix.com/embed/beat-boxers" allowfullscreen loading="lazy"></iframe>
+    </div>
+
+    <!-- Casual Game -->
+    <div class="game-card casual">
+      <div class="thumbnail">
+        <img src="images/casual-game.jpg" alt="Casual Game" loading="lazy">
+        <a href="https://www.crazygames.com/embed/bounce-ball" target="_blank" class="play-button">Play Now</a>
+      </div>
+      <h3>Casual Fun</h3>
+      <iframe data-src="https://www.crazygames.com/embed/bounce-ball" allowfullscreen loading="lazy"></iframe>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 PixelFun. All rights reserved.</p>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    // Category filter
+    function filterGames(category) {
+      const games = document.querySelectorAll('.game-card');
+      games.forEach(game => {
+        game.style.display = category === 'all' || game.classList.contains(category) ? 'block' : 'none';
+      });
+    }
+
+    // Lazy load iframes
+    const iframes = document.querySelectorAll('iframe[data-src]');
+    const lazyLoad = entries => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          const iframe = entry.target;
+          iframe.src = iframe.dataset.src;
+          observer.unobserve(iframe);
+        }
+      });
+    }
+    const observer = new IntersectionObserver(lazyLoad, {threshold: 0.1});
+    iframes.forEach(f => observer.observe(f));
+  </script>
+</body>
+</html>
