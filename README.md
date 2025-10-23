@@ -1,2 +1,2 @@
 # PixelFun
-My arcade games website for Uk - pixelfun.infy.uk
+My arcade games website - pixelfun
